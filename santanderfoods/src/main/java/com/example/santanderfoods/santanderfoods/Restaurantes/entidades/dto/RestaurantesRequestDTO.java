@@ -1,4 +1,4 @@
-package com.example.santanderfoods.santanderfoods.restaurantes.entidades.dto;
+package com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto;
 
 import lombok.Setter;
 import lombok.Getter;
@@ -8,5 +8,7 @@ import lombok.Getter;
 public class RestaurantesRequestDTO {
 
     private String nombre;
+    private String direccion;
+    private String telefono;
     private boolean activo;
 }

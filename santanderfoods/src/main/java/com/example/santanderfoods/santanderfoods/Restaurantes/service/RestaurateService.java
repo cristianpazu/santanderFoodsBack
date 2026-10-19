@@ -1,11 +1,11 @@
-package com.example.santanderfoods.santanderfoods.restaurantes.service;
+package com.example.santanderfoods.santanderfoods.Restaurantes.service;
 
-import com.example.santanderfoods.santanderfoods.restaurantes.entidades.dto.RestaurantesRequestDTO;
-import com.example.santanderfoods.santanderfoods.restaurantes.entidades.dto.RestaurantesResponseDTO;
+import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestaurantesRequestDTO;
+import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestaurantesResponseDTO;
 
 import java.util.List;
 
-public interface restaurateService {
+public interface RestaurateService {
 
     RestaurantesResponseDTO registrarRestaurantes(RestaurantesRequestDTO restaurantesRequestDTO);
 
