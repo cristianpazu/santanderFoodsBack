@@ -111,7 +111,7 @@ public class MenuIMPL implements MenuService  {
                     "El menu no existe"
             ));
 
-            menu.setActivo(false);
+            menu.setActivo(inactiva);
 
             Menu menuInactivado = menuRepository.save(menu);
 

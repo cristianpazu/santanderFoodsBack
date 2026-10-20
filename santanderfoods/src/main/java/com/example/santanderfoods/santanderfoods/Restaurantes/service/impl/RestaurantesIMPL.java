@@ -83,7 +83,19 @@ try {
 
     @Override
     public List<RestaurantesResponseDTO> listarRestaurantes() {
-        return null;
+        try{
+
+
+            List<RestaurantesResponseDTO> restaurante = restauranteRepository.listarTodosRestaurantes();
+
+            if (restaurante.isEmpty()){
+                throw new RuntimeException("La lista esta vacia");
+            }
+
+            return restaurante;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

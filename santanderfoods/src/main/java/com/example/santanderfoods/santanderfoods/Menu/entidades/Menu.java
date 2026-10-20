@@ -1,6 +1,7 @@
 package com.example.santanderfoods.santanderfoods.Menu.entidades;
 
 import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.Restaurantes;
+import com.example.santanderfoods.santanderfoods.Submenu.entidades.SubMenu;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,10 +25,10 @@ import java.util.List;
         String nombreMenu;
 
         boolean activo;
-    /*
+
     @OneToMany(mappedBy = "menu")
     @JsonIgnore
-    List<SubMenu> submenus; */
+    List<SubMenu> submenus;
 
         @ManyToOne
         @JoinColumn(name = "id_restaurante", nullable = false)

@@ -1,6 +1,7 @@
 package com.example.santanderfoods.santanderfoods.Submenu.entidades;
 
 import com.example.santanderfoods.santanderfoods.Menu.entidades.Menu;
+import com.example.santanderfoods.santanderfoods.productos.entidades.Productos;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -31,8 +32,8 @@ public class SubMenu {
     @JoinColumn(name = "menu_id")
     @JsonIgnore
     Menu menu;
-/*
+
     @OneToMany(mappedBy = "submenu")
     @JsonManagedReference
-    List<Productos> productos; */
+    List<Productos> productos;
 }
