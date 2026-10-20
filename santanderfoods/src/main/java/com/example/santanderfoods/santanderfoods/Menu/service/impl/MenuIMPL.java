@@ -49,7 +49,7 @@ public class MenuIMPL implements MenuService  {
             response.setIdMenu(menuGuardado.getIdMenu());
             response.setNombreMenu(menuGuardado.getNombreMenu());
             response.setActivo(menuGuardado.isActivo());
-            response.setRestaurante(
+            response.setIdRestaurante(
                     menuGuardado.getRestaurante().getIdRestaurante()
             );
 
@@ -89,7 +89,7 @@ public class MenuIMPL implements MenuService  {
             response.setIdMenu(menuActualizado.getIdMenu());
             response.setNombreMenu(menuActualizado.getNombreMenu());
             response.setActivo(menuActualizado.isActivo());
-            response.setRestaurante(
+            response.setIdRestaurante(
                     menuActualizado.getRestaurante().getIdRestaurante()
             );
 
@@ -120,7 +120,7 @@ public class MenuIMPL implements MenuService  {
             response.setIdMenu(menuInactivado.getIdMenu());
             response.setNombreMenu(menuInactivado.getNombreMenu());
             response.setActivo(menuInactivado.isActivo());
-            response.setRestaurante(
+            response.setIdRestaurante(
                     menuInactivado.getRestaurante().getIdRestaurante()
             );
 
