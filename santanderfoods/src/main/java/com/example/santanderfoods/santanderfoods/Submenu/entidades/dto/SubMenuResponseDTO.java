@@ -12,4 +12,6 @@ import lombok.Setter;
 public class SubMenuResponseDTO {
     Integer idSubmen;
     String nombre;
+    boolean activo;
+    private Integer menuId;
 }
