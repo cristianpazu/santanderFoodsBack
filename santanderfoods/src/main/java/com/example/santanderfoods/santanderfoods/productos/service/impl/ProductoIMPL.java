@@ -50,6 +50,7 @@ public class ProductoIMPL implements ProductoService {
             productoResponseDTO.setId(guardado.getIdProductos());
             productoResponseDTO.setNombre(guardado.getNombre());
             productoResponseDTO.setDescripcion(guardado.getDescripcion());
+            productoResponseDTO.setPrecio(guardado.getPrecio());
             productoResponseDTO.setActivo(guardado.isActivo());
             productoResponseDTO.setIdSubmenu(guardado.getSubmenu().getIdSubmenu());
 

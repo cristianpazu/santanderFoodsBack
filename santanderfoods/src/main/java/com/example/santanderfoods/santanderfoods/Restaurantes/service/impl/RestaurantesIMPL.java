@@ -1,10 +1,14 @@
 package com.example.santanderfoods.santanderfoods.Restaurantes.service.impl;
 
+import com.example.santanderfoods.santanderfoods.Menu.entidades.dto.MenuCompletoResponseDTO;
 import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.Restaurantes;
+import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestauranteCompletoResponseDTO;
 import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestaurantesRequestDTO;
 import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestaurantesResponseDTO;
 import com.example.santanderfoods.santanderfoods.Restaurantes.repositorty.RestauranteRepository;
 import com.example.santanderfoods.santanderfoods.Restaurantes.service.RestaurateService;
+import com.example.santanderfoods.santanderfoods.Submenu.entidades.dto.SubMenuCompletoResponseDTO;
+import com.example.santanderfoods.santanderfoods.productos.entidades.dto.ProductoCompletoResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -99,7 +103,68 @@ try {
     }
 
     @Override
-    public RestaurantesResponseDTO traerRestauratesId(Integer id) {
-        return null;
+    public RestauranteCompletoResponseDTO traerRestauratesId(Integer id) {
+        try{
+            Restaurantes restaurantesRequestDTO = restauranteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    "El restaurante con ID " + id + " no existe"
+            ));
+
+            RestauranteCompletoResponseDTO restaurantesResponseDTO = new RestauranteCompletoResponseDTO();
+            restaurantesResponseDTO.setIdRestaurante(restaurantesRequestDTO.getIdRestaurante());
+            restaurantesResponseDTO.setNombre(restaurantesRequestDTO.getNombre());
+            restaurantesResponseDTO.setDireccion(restaurantesRequestDTO.getDireccion());
+            restaurantesResponseDTO.setTelefono(restaurantesRequestDTO.getTelefono());
+            restaurantesResponseDTO.setActivo(restaurantesRequestDTO.isActivo());
+
+            if (restaurantesRequestDTO.getMenus().isEmpty()) {
+                throw new RuntimeException("No tiene menus");
+            }
+
+
+            List<MenuCompletoResponseDTO> menusDTO = restaurantesRequestDTO.getMenus().stream()
+                    .filter(Menus ->Menus.isActivo())
+                    .map(menu -> {
+
+                        MenuCompletoResponseDTO menuDTO = new MenuCompletoResponseDTO();
+
+                        menuDTO.setNombreMenu(menu.getNombreMenu());
+                        menuDTO.setActivo(menu.isActivo());
+
+                        List<SubMenuCompletoResponseDTO> submenus = menu.getSubmenus().stream()
+                                .filter(SubMenu ->SubMenu.isActivo())
+                                .map(sm -> {
+
+                                    SubMenuCompletoResponseDTO smDTO = new SubMenuCompletoResponseDTO();
+                                    smDTO.setIdSubmenu(sm.getIdSubmenu());
+                                    smDTO.setNombre(sm.getNombre());
+                                    smDTO.setActivo(sm.isActivo());
+
+                                    List<ProductoCompletoResponseDTO> productos = sm.getProductos().stream()
+                                            .filter(p -> p.isActivo())
+                                            .map(p -> new ProductoCompletoResponseDTO(
+                                                    p.getIdProductos(),
+                                                    p.getNombre(),
+                                                    p.getDescripcion(),
+                                                    p.getPrecio(),
+                                                    p.isActivo()
+                                            )).toList();
+
+                                    smDTO.setProductos(productos);
+                                    return smDTO;
+
+                                }).toList();
+
+                        menuDTO.setSubmenus(submenus);
+                        return menuDTO;
+
+                    }).toList();
+
+            restaurantesResponseDTO.setMenus(menusDTO);
+
+            return restaurantesResponseDTO;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

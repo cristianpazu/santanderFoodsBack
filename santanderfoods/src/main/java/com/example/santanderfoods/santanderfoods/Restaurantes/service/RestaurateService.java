@@ -1,5 +1,6 @@
 package com.example.santanderfoods.santanderfoods.Restaurantes.service;
 
+import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestauranteCompletoResponseDTO;
 import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestaurantesRequestDTO;
 import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestaurantesResponseDTO;
 
@@ -13,7 +14,7 @@ public interface RestaurateService {
 
     List<RestaurantesResponseDTO> listarRestaurantes();
 
-    RestaurantesResponseDTO traerRestauratesId(Integer id);
+    RestauranteCompletoResponseDTO traerRestauratesId(Integer id);
 
 
 

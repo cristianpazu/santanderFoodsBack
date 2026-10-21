@@ -1,5 +1,6 @@
 package com.example.santanderfoods.santanderfoods.Restaurantes.controller;
 
+import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestauranteCompletoResponseDTO;
 import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestaurantesRequestDTO;
 import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestaurantesResponseDTO;
 import com.example.santanderfoods.santanderfoods.Restaurantes.service.RestaurateService;
@@ -37,6 +38,14 @@ public class RestaurantesController {
     public ResponseEntity<List<RestaurantesResponseDTO>> listarRestaurantes(){
 
         return ResponseEntity.ok(restaurateService.listarRestaurantes());
+
+    }
+
+
+    @GetMapping("/consultar/restaurantes/{id}")
+    public ResponseEntity<RestauranteCompletoResponseDTO> listarRestaurantesId(@PathVariable("id") Integer id){
+
+        return ResponseEntity.ok(restaurateService.traerRestauratesId(id));
 
     }
 

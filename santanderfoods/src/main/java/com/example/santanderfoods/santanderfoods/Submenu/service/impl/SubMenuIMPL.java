@@ -43,7 +43,7 @@ public class SubMenuIMPL implements SubMenuService {
 
                SubMenuResponseDTO response = new SubMenuResponseDTO();
 
-               response.setMenuId(guardado.getIdSubmenu());
+               response.setIdSubmen(guardado.getIdSubmenu());
                response.setNombre(guardado.getNombre());
                response.setMenuId(guardado.getMenu().getIdMenu());
                response.setActivo(guardado.isActivo());
