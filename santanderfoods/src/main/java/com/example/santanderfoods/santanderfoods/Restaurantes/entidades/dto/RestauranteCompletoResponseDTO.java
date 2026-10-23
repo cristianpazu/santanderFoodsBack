@@ -16,6 +16,7 @@ public class RestauranteCompletoResponseDTO {
     private Integer idRestaurante;
     private String nombre;
     private String direccion;
+    String descripcion;
     private String telefono;
     private boolean activo;
 

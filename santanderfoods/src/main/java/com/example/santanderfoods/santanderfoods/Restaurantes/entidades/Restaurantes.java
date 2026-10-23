@@ -20,6 +20,8 @@ public class Restaurantes {
 
     String direccion;
 
+    String descripcion;
+
     String telefono;
 
     boolean activo;

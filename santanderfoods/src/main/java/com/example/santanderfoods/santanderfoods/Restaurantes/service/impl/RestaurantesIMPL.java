@@ -65,6 +65,7 @@ try {
 
     restaurantesRequestDTO1.setNombre(restaurantesRequestDTO.getNombre());
     restaurantesRequestDTO1.setDireccion(restaurantesRequestDTO.getDireccion());
+    restaurantesRequestDTO1.setDescripcion(restaurantesRequestDTO.getDescripcion());
     restaurantesRequestDTO1.setTelefono(restaurantesRequestDTO.getTelefono());
 
     Restaurantes restauranteActualizado = restauranteRepository.save(restaurantesRequestDTO1);
@@ -74,6 +75,7 @@ try {
     responseDTO.setIdRestaurante(restauranteActualizado.getIdRestaurante());
     responseDTO.setNombre(restauranteActualizado.getNombre());
     responseDTO.setDireccion(restauranteActualizado.getDireccion());
+    responseDTO.setDescripcion(restauranteActualizado.getDescripcion());
     responseDTO.setTelefono(restauranteActualizado.getTelefono());
 
     return responseDTO;
@@ -127,7 +129,7 @@ try {
                     .map(menu -> {
 
                         MenuCompletoResponseDTO menuDTO = new MenuCompletoResponseDTO();
-
+                        menuDTO.setIdMenu(menu.getIdMenu());
                         menuDTO.setNombreMenu(menu.getNombreMenu());
                         menuDTO.setActivo(menu.isActivo());
 

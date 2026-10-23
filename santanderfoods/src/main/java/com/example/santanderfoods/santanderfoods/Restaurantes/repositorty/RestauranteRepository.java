@@ -12,7 +12,7 @@ import java.util.List;
 public interface RestauranteRepository extends JpaRepository<Restaurantes, Integer> {
 
 
-    @Query(value = "SELECT new com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestaurantesResponseDTO(rs.idRestaurante ,rs.nombre, rs.direccion, rs.telefono, rs.activo) " +
+    @Query(value = "SELECT new com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestaurantesResponseDTO(rs.idRestaurante ,rs.nombre, rs.direccion, rs.descripcion ,rs.telefono, rs.activo) " +
             "FROM Restaurantes rs")
     List<RestaurantesResponseDTO> listarTodosRestaurantes();
 

@@ -9,6 +9,7 @@ public class RestaurantesRequestDTO {
 
     private String nombre;
     private String direccion;
+    String descripcion;
     private String telefono;
     private boolean activo;
 }
