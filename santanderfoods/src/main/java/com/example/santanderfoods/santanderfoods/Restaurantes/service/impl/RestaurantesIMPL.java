@@ -34,6 +34,7 @@ public class RestaurantesIMPL implements RestaurateService {
             restaurante.setActivo(restaurantesRequestDTO.isActivo());
             restaurante.setDireccion(restaurantesRequestDTO.getDireccion());
             restaurante.setTelefono(restaurantesRequestDTO.getTelefono());
+            restaurante.setDescripcion(restaurantesRequestDTO.getDescripcion());
 
             Restaurantes guardado =  restauranteRepository.save(restaurante);
 
@@ -43,6 +44,7 @@ public class RestaurantesIMPL implements RestaurateService {
             response.setNombre(guardado.getNombre());
             response.setDireccion(guardado.getDireccion());
             response.setTelefono(guardado.getTelefono());
+            response.setDescripcion(guardado.getDescripcion());
             response.setActivo(guardado.isActivo());
 
 
