@@ -17,4 +17,13 @@ public interface ProductosRepository extends JpaRepository<Productos, Integer> {
             "p.submenu.idSubmenu)" +
             "  FROM Productos p" )
     List<ProductoResponseDTO> findProductoResponseDtos();
+
+    @Query(value = "SELECT p.idProductos, " +
+            "p.Nombre, " +
+            "p.Descripcion, " +
+            "p.Precio, " +
+            "p.activo " +
+            "FROM Productos p " +
+            "WHERE p.idProductos =: id " )
+    Productos findByProductoResponseId(Integer id);
 }

@@ -31,4 +31,10 @@ public class ProductoController {
         return ResponseEntity.ok(productosService.consultarProductos());
 
     }
+
+    @GetMapping("/consultar/producto/{id}")
+    public ResponseEntity<ProductoResponseDTO> consultarProductoId(@PathVariable Integer id){
+        return ResponseEntity.ok(productosService.consultarProductoId(id));
+
+    }
 }

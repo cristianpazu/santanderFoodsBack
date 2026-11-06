@@ -138,4 +138,26 @@ public class ProductoIMPL implements ProductoService {
 
         }
     }
+
+    @Override
+    public ProductoResponseDTO consultarProductoId(Integer id) {
+        try{
+
+            Productos producto = productosRepository.findByProductoResponseId(id);
+
+            System.out.println("producto = " + producto);
+            
+            ProductoResponseDTO productoResponseDTO = new ProductoResponseDTO();
+            productoResponseDTO.setId(producto.getIdProductos());
+            productoResponseDTO.setNombre(producto.getNombre());
+            productoResponseDTO.setNombre(producto.getDescripcion());
+            productoResponseDTO.setActivo(producto.isActivo());
+
+            return productoResponseDTO;
+
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+
+        }
+    }
 }

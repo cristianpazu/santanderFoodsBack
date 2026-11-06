@@ -14,4 +14,7 @@ public interface ProductoService {
 
     List<ProductoResponseDTO> consultarProductos();
 
+
+    ProductoResponseDTO consultarProductoId(Integer id);
+
 }
