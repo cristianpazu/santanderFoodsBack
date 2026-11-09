@@ -2,6 +2,7 @@ package com.example.santanderfoods.santanderfoods.Pedidos.service.impl;
 
 import com.example.santanderfoods.santanderfoods.Pedidos.entidades.DTO.PedidoItemRequestDTO;
 import com.example.santanderfoods.santanderfoods.Pedidos.entidades.DTO.PedidoRequestDTO;
+import com.example.santanderfoods.santanderfoods.Pedidos.entidades.DTO.PedidoResponseDTO;
 import com.example.santanderfoods.santanderfoods.Pedidos.entidades.PedidoItem;
 import com.example.santanderfoods.santanderfoods.Pedidos.entidades.Pedidos;
 import com.example.santanderfoods.santanderfoods.Pedidos.repository.PedidoRepository;
@@ -108,6 +109,20 @@ public class PedidoIMPL implements PedidoService {
 
             // 5. Guardar pedido
             return pedidoRepository.save(pedido);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<PedidoResponseDTO> consultarPedidosHoy() {
+        try {
+            List<PedidoResponseDTO> historial = pedidoRepository.consultarPedidoHoy();
+            if (historial.isEmpty()) {
+                throw new RuntimeException("La lista esta vacia");
+            }
+
+            return historial;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
