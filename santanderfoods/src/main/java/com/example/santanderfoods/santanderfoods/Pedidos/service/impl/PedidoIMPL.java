@@ -1,8 +1,6 @@
 package com.example.santanderfoods.santanderfoods.Pedidos.service.impl;
 
-import com.example.santanderfoods.santanderfoods.Pedidos.entidades.DTO.PedidoItemRequestDTO;
-import com.example.santanderfoods.santanderfoods.Pedidos.entidades.DTO.PedidoRequestDTO;
-import com.example.santanderfoods.santanderfoods.Pedidos.entidades.DTO.PedidoResponseDTO;
+import com.example.santanderfoods.santanderfoods.Pedidos.entidades.DTO.*;
 import com.example.santanderfoods.santanderfoods.Pedidos.entidades.PedidoItem;
 import com.example.santanderfoods.santanderfoods.Pedidos.entidades.Pedidos;
 import com.example.santanderfoods.santanderfoods.Pedidos.repository.PedidoRepository;
@@ -17,7 +15,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PedidoIMPL implements PedidoService {
@@ -115,14 +115,48 @@ public class PedidoIMPL implements PedidoService {
     }
 
     @Override
-    public List<PedidoResponseDTO> consultarPedidosHoy() {
+    public List<PedidosResponseDTO> consultarPedidosHoy() {
         try {
             List<PedidoResponseDTO> historial = pedidoRepository.consultarPedidoHoy();
             if (historial.isEmpty()) {
                 throw new RuntimeException("La lista esta vacia");
             }
+            Map<Integer, PedidosResponseDTO> pedidos = new LinkedHashMap<>();
+            for (PedidoResponseDTO item : historial) {
 
-            return historial;
+                PedidosResponseDTO pedido =
+                        pedidos.get(item.getIdPedido());
+
+                if (pedido == null) {
+
+                    pedido = new PedidosResponseDTO();
+
+                    pedido.setIdPedido(item.getIdPedido());
+                    pedido.setNombreCliente(item.getNombreCliente());
+                    pedido.setDireccionEntrega(item.getDireccionEntrega());
+                    pedido.setTelefonoCliente(item.getTelefonoCliente());
+                    pedido.setFecha(item.getFecha());
+                    pedido.setHora(item.getHora());
+                    pedido.setMetodoPago(item.getMetodoPago());
+                    pedido.setTotalCuenta(item.getTotalCuenta());
+                    pedido.setItems(new ArrayList<>());
+
+                    pedidos.put(item.getIdPedido(), pedido);
+                }
+                pedido.getItems().add(
+                        new PedidoItemResponseDTO(
+                                item.getNombre(),
+                                item.getDescripcion(),
+                                item.getPrecio(),
+                                item.getCantidad(),
+                                item.getPrecioUnitario()
+                        )
+                );
+            }
+
+            return new ArrayList<>(pedidos.values());
+
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -2,6 +2,7 @@ package com.example.santanderfoods.santanderfoods.Pedidos.controller;
 
 import com.example.santanderfoods.santanderfoods.Pedidos.entidades.DTO.PedidoRequestDTO;
 import com.example.santanderfoods.santanderfoods.Pedidos.entidades.DTO.PedidoResponseDTO;
+import com.example.santanderfoods.santanderfoods.Pedidos.entidades.DTO.PedidosResponseDTO;
 import com.example.santanderfoods.santanderfoods.Pedidos.entidades.Pedidos;
 import com.example.santanderfoods.santanderfoods.Pedidos.service.PedidoService;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class PedidoController {
 
 
     @GetMapping("/consultar/pedido")
-    public ResponseEntity<List<PedidoResponseDTO>> consultarPedido(){
+    public ResponseEntity<List<PedidosResponseDTO>> consultarPedido(){
 
         return ResponseEntity.ok(pedidoService.consultarPedidosHoy());
 
