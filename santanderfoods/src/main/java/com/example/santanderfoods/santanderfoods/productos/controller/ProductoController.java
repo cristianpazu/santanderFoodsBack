@@ -26,9 +26,9 @@ public class ProductoController {
     }
 
 
-    @GetMapping("/listar/productos")
-    public ResponseEntity<List<ProductoResponseDTO>> listarMesas(){
-        return ResponseEntity.ok(productosService.consultarProductos());
+    @GetMapping("/listar/productos/{id}")
+    public ResponseEntity<List<ProductoResponseDTO>> listarMesas(@PathVariable Integer id){
+        return ResponseEntity.ok(productosService.consultarProductos(id));
 
     }
 

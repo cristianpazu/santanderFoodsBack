@@ -4,6 +4,9 @@ import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.Rest
 import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestaurantesRequestDTO;
 import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.dto.RestaurantesResponseDTO;
 import com.example.santanderfoods.santanderfoods.Restaurantes.service.RestaurateService;
+import com.example.santanderfoods.santanderfoods.Restaurantes.entidades.Restaurantes;
+
+import com.example.santanderfoods.santanderfoods.restaurantes.entidades.dto.RestautateInformacionResponseDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +49,13 @@ public class RestaurantesController {
     public ResponseEntity<RestauranteCompletoResponseDTO> listarRestaurantesId(@PathVariable("id") Integer id){
 
         return ResponseEntity.ok(restaurateService.traerRestauratesId(id));
+
+    }
+
+    @GetMapping("/consultar/restaurantesInformacion/{id}")
+    public ResponseEntity<RestautateInformacionResponseDTO> consultarInformacionRestaurante(@PathVariable("id") Integer id){
+
+        return ResponseEntity.ok(restaurateService.consultarInformacionRestaurante(id));
 
     }
 

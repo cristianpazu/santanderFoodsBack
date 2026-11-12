@@ -12,7 +12,7 @@ public interface ProductoService {
 
     ProductoResponseDTO inactivarProductos(Integer id, Boolean inactiva);
 
-    List<ProductoResponseDTO> consultarProductos();
+    List<ProductoResponseDTO> consultarProductos(Integer id);
 
 
     ProductoResponseDTO consultarProductoId(Integer id);

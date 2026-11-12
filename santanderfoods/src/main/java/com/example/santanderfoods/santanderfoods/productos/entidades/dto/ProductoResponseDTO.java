@@ -16,4 +16,6 @@ public class ProductoResponseDTO {
     Integer precio;
     boolean activo;
     Integer idSubmenu;
+    Integer idMenu;
+    Integer idRestaurante;
 }

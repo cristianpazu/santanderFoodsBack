@@ -121,9 +121,9 @@ public class ProductoIMPL implements ProductoService {
     }
 
     @Override
-    public List<ProductoResponseDTO> consultarProductos() {
+    public List<ProductoResponseDTO> consultarProductos(Integer id) {
         try{
-            List<ProductoResponseDTO> productosList = productosRepository.findProductoResponseDtos();
+            List<ProductoResponseDTO> productosList = productosRepository.findProductoResponseDtos2(id);
 
             System.out.println("productosList = " + productosList);
 

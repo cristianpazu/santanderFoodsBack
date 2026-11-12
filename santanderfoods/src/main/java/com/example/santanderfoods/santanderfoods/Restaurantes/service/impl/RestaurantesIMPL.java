@@ -9,6 +9,7 @@ import com.example.santanderfoods.santanderfoods.Restaurantes.repositorty.Restau
 import com.example.santanderfoods.santanderfoods.Restaurantes.service.RestaurateService;
 import com.example.santanderfoods.santanderfoods.Submenu.entidades.dto.SubMenuCompletoResponseDTO;
 import com.example.santanderfoods.santanderfoods.productos.entidades.dto.ProductoCompletoResponseDTO;
+import com.example.santanderfoods.santanderfoods.restaurantes.entidades.dto.RestautateInformacionResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -168,6 +169,27 @@ try {
 
             return restaurantesResponseDTO;
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public RestautateInformacionResponseDTO consultarInformacionRestaurante(Integer id) {
+        try{
+            Restaurantes restaurantesRequestDTO = restauranteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    "El restaurante con ID " + id + " no existe"
+            ));
+
+            RestautateInformacionResponseDTO restaurantesResponseDTO = new RestautateInformacionResponseDTO();
+            restaurantesResponseDTO.setIdRestaurante(restaurantesRequestDTO.getIdRestaurante());
+            restaurantesResponseDTO.setNombre(restaurantesRequestDTO.getNombre());
+            restaurantesResponseDTO.setDireccion(restaurantesRequestDTO.getDireccion());
+            restaurantesResponseDTO.setTelefono(restaurantesRequestDTO.getTelefono());
+            restaurantesResponseDTO.setActivo(restaurantesRequestDTO.isActivo());
+
+            return restaurantesResponseDTO;
+        }catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
